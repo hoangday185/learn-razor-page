@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "02-syntax-razor-page/1.0.0": {
+        "runtime": {
+          "02-syntax-razor-page.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "02-syntax-razor-page/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
