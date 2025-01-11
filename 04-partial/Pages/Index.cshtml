@@ -1,0 +1,76 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["titlemessage"] = "Sản phẩm mới";
+    ViewData["content"] = "Đây là sản phẩm mới nhất của chúng tôi";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@await Html.PartialAsync("_Message")
+
+@{
+    
+    var pro1 =     new Product { Name = "Iphone X", Description = "Điện thoại đời mới ...." , Price = 1000};
+    var pro2 =    new Product { Name = "Samsung s20 ultra", Description = "Điện thoại đời mới ...." , Price = 2000};
+    var pro3 =    new Product { Name = "Nokia xyz", Description = "Điện thoại đời mới ...." , Price = 3000};
+    
+}
+
+@* <partial name="_ProductItem" model="Product" /> *@
+
+@* @await Html.PartialAsync("_ProductItem") *@
+@* @Html.Partial("_ProductItem"); *@
+@* @{ 
+    await Html.RenderPartialAsync("_ProductItem");
+    Html.RenderPartial("_ProductItem");
+} *@
+
+<div class="row bg-info">
+    <div class="col mt-3">
+        <partial name="_ProductItem" model="pro1" />
+    </div>
+    <div class="col mt-3">
+        @await Html.PartialAsync("_ProductItem", pro2)
+    </div>
+    <div class="col mt-3">
+        @{
+            await Html.RenderPartialAsync("_ProductItem", pro3);            
+        }
+    </div>
+</div>
+
+<div class="row bg-warning">
+@{
+    var listProduct = new List<Product>(){
+        new Product { Name = "Iphone X", Description = "Điện thoại đời mới ...." , Price = 1000},
+        new Product { Name = "Samsung s20 ultra", Description = "Điện thoại đời mới ...." , Price = 2000},
+        new Product { Name = "Nokia xyz", Description = "Điện thoại đời mới ...." , Price = 3000}
+    };
+
+    foreach (var item in listProduct)
+    {
+        <div class="col mt-3"><partial name="_ProductItem" model="item" /></div>
+    }
+}
+</div>
+@* 
+    partial view: tương tự như component trong react
+    - partial view có thể nhận tham số
+    - partial view chia giao diện thành các phần nhỏ hơn
+
+    component giống Partial view nhưng có thể dùng DI => nó có thể được coi là razor page mini 
+
+ *@
+
+@await Component.InvokeAsync("ProductBox",true)
+
+<form method="post">
+    <label for="fullname">Tên của bạn</label>
+    <input type="text" name="fullname" id="fullname" />
+    <input type="submit" value="Gửi" />
+</form>
